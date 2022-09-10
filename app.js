@@ -26,7 +26,7 @@ app.get('/api/pokemons/:id', (req, res) => {
 	//res.send(`vous avez demandé le pokemons ${pokemon.name}`)
 	//res.send(`salut, Bulbizare !`))
 	//on afiche le message de succès da l'API
-	const message = 'Un pokemon a bien été retouvé.'
+	const message = 'La liste des 12 pokemons au forma json.';
 	//res.json(helper.success (message, pokemon))//on appel la méthode success de helper.js
 	res.json(success (message, pokemon))//on réecris le code précédant grace
 	//à la nouvelle syntaxe du code écrit en ligne 6
@@ -35,12 +35,19 @@ app.get('/api/pokemons/:id', (req, res) => {
 
 })
 //***********************************//
-//reccupérer et ajouter des fichier depeuis un fichier 
+//reccupérer et ajouter des fichier depeuis un composent array data 
 	//aficher dans le nombre d'éléments contenus dans le array list 
     //construction de la route avec la méthode GET.
     app.get('/api/pokemons', (req, res) => {
-    	const nombrepokemons = pokemons.length
-    	res.send(`Il y a ${nombrepokemons} pokemons dans la pokedes pour le moment`)
+    	const nombrepokemons = pokemons
+    	//for(let i=0; i>=12; i++){
+    		//pokemons.
+    	//}
+    	const message = 'La liste des 12 pokemons au forma json.';
+    	//res.send(`Il y a ${nombrepokemons} pokemons dans la pokedes pour le moment`)
+    	//on vas retourner les pockemon au forma Json
+    	//res.send(`Il y a ${nombrepokemons} pokemons dans la pokedes pour le moment`)
+    	res.json(success (message, nombrepokemons))
     	
     })
 
