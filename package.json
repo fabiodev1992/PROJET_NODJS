@@ -1,0 +1,17 @@
+{
+  "name": "projet_nodejs",
+  "version": "1.0.0",
+  "description": "my first API in node",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "FABIO",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
