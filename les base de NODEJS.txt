@@ -1,0 +1,19 @@
+********NOTIONS de midle ware********
+lesmiddlewware interagissent avec les requettes entrante et soortante
+en direction des pages ou de api
+****instalation d'un middlwar de expressjs***
+npm install morgan --save-dev
+**morgan fait la gestion e midlware route donc plus besoin de 
+réinventer la roue
+****utilisation de plusieur middlewer**
+l'odre d'inplementation des midleware est important
+instalation du middlewar favicon
+on instale la dépendance grace à la commande
+npm install serve-favicon --save
+****Ajoue d'un élément dans sur une page grace à la méthode POST via une URL***
+**instalation du midlewar body-parser***
+ce midlware permet de convertire de chaîne de caractère en format Json.
+pour l'instaler on fait:
+npm install body-parser --save
+
+
