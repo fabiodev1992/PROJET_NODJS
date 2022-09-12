@@ -41,23 +41,6 @@ app.get('/', (req,res) => res.send(`salut je suis new de express et j'apprend no
 //ajoutont une nouvell route les unpoint(les  points dentré)
 //point de terminaisonExpress = app.METHOD(CHEMAIN, GESTIONAIRE(res,res)) 
 //est un exemple de route avec expressjs
-//ajouter une nouvelle route avec une url
-app.get('/api/pokemons/:id', (req, res) => {
-	//extraction de l'id
-	const id = parseInt(req.params.id) //avec la méthode parseInt on converti une chaîne de caractère en INT
-	const pokemon = pokemons.find(pokemon => pokemon.id === id)
-	//on reccupère l'id de l'élément et on le passe en paramètre dans la route
-	//res.send(`vous avez demandé le pokemons ${pokemon.name}`)
-	//res.send(`salut, Bulbizare !`))
-	//on afiche le message de succès da l'API
-	const message = 'La liste des 12 pokemons au forma json.';
-	//res.json(helper.success (message, pokemon))//on appel la méthode success de helper.js
-	res.json(success (message, pokemon))//on réecris le code précédant grace
-	//à la nouvelle syntaxe du code écrit en ligne 6
-	//retourner une repons au format json
-	//res.json(pokemon)
-
-})
 //***********************************//
 //reccupérer et ajouter des fichier depeuis un composent array data 
 	//aficher dans le nombre d'éléments contenus dans le array list 
@@ -75,16 +58,59 @@ app.get('/api/pokemons/:id', (req, res) => {
     	res.json(success (message, nombrepokemons))
     	
     })
+
+    //ajouter une nouvelle route avec une url
+app.get('/api/pokemons/:id', (req, res) => {
+	//extraction de l'id
+	const id = parseInt(req.params.id) //avec la méthode parseInt on converti une chaîne de caractère en INT
+	const pokemon = pokemons.find(pokemon => pokemon.id === id)
+	//on reccupère l'id de l'élément et on le passe en paramètre dans la route
+	//res.send(`vous avez demandé le pokemons ${pokemon.name}`)
+	//res.send(`salut, Bulbizare !`))
+	//on afiche le message de succès da l'API
+	const message = 'La liste des 12 pokemons au forma json.';
+	//res.json(helper.success (message, pokemon))//on appel la méthode success de helper.js
+	res.json(success (message, pokemon))//on réecris le code précédant grace
+	//à la nouvelle syntaxe du code écrit en ligne 6
+	//retourner une repons au format json
+	//res.json(pokemon)
+
+})
     //insertion creation d'un pokemons grace à la méthode POST
     app.post('/api/pokemons', (req, res) => {//definition du poin dentré avec l'URL pour spécifier à express
     	const id = getUniqueId(pokemons) //declaration d'une variabele aléatoir
-    	const pokemonCreated = {...req.body, ...{id: id, created: new Date()}}
+    	const pokemonCreated = { ...req.body, ...{id: id, created: new Date()}}
          pokemons.push(pokemonCreated)//ajou ds le tableaux
          const message = `Le pokemon ${pokemonCreated.name} a bien été crée.`
          res.json(success(message, pokemonCreated))
-
     })
-    
+    //modifier une donner avec 	APi REST
+    //l'opperation put permet de modifier les donées
+    app.put('/api/pokemons/:id', (req,res) => {
+    	const id = parseInt(req.params.id)
+    	const pokemonUpdated = { ...req.body, id: id }
+    	pokemons = pokemons.map(pokemon => {
+    		//mètre à jour la liste global de pokemon
+    		//en remplacant l'anciène par la nouvelle
+    		//grace à map on retourne la liste à jour de pokemons
+    		return pokemon.id === id ? pokemonUpdated : pokemon
+    		//}traitement de la modification
+    	})
+    	const message = `Le pokemon ${pokemonUpdated.name} a bien été modifier.`
+    	res.json(success(message, pokemonUpdated))
+    })
+    //**Suprssion des pokemons***
+    //suppression grace à son id
+    //le fonction filter permet de faire la supression
+    app.delete('/api/pokemons/:id', (req, res) => {
+    	const id = parseInt(req.params.id)
+    	const pokemonDeleted = pokemons.find(pokemon => pokemon.id === id)
+    	pokemons.filter(pokemon => pokemon.id !== id)
+
+    	const message = `Le pokemon ${pokemonDeleted.name} a bien été supprimé`
+    	res.json(success(message, pokemonDeleted))
+    })
+
 app.listen(port, () => console.log(`Notre application es démaré sur: http://localhost:${port}`))//on demare l'API pour aficher les infos de notre apliction 
 
 
