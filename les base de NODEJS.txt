@@ -15,5 +15,39 @@ npm install serve-favicon --save
 ce midlware permet de convertire de chaîne de caractère en format Json.
 pour l'instaler on fait:
 npm install body-parser --save
+*****la base de donnée****
+O R M c'est Object Relation Maping
+**instalation d'un ORM **Sequelize est un ORM java scripte****
+npm install sequelize --save
+***Instalation d'un driveur maria db***
+npm install mariadb --save
 
+***Architècture du programme****
+repartition en 3  rôles différent
+-points de tèrminèson
+-le démarage du serveur
+-interacction avec la base de donnée grâce à l'ORM sequelize
+**fonctionement de sequelize**
+model (abstration des tables) =  ets un obbet speccifiquefourni par l'ORM sequelize
+**cration de model**
+elle conciste à la déclaration d'objets javascript en respectant les conventions proposés par sequeliz
+le model est un fichier.js qui contien des objets au forma json
+***restructuration de notre code***
+-on a suprimé helper.js
+-déplacer moc-pokemon vers src/db(db va contenir tous ce qui concèrne laa base de donnée
+sequeliz.js contien les paramètres de connexion, chargement des models  et initialisation de la base de données
+*****Requette http (Client)> API Rest> Appel à la base de données>
+Envoie d'une réponse au client********
+-la méthode findAll permet de reccupérer le donné de la Db
+Architècture:
+1-Création ou obtention des donnée à manipuler (mock-pokemon.js)
+2-Creéation de la modèl elle contient les chants de la table et leurs type de donné à insérer(pokemon.js)
+la méthode dinfine permet de créer la table et sychroniser avec la méthode *sync* pour la création de la table
+dans sequelize.js
+**Archi tècture est:***
+-API RES( les routes vers les composants
+-Sequelize  ORM qui permet de faire les requettes
+-la base de donnée pour stocker
+****API route**
+C'est dans le dossier route qu'ont defini less routes (CRUD) et les affichages
 
